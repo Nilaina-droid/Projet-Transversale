@@ -1,0 +1,194 @@
+/* ==========================================================================
+   ESPACE GESTIONNAIRE - PAGES D'ADMINISTRATION
+   ========================================================================== */
+
+/* Navbar de l'administration */
+.admin-navbar {
+    background: #ffffff;
+    width: 100%;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.admin-navbar span {
+    font-size: 14px;
+    color: #555555;
+}
+
+.admin-navbar a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+/* Conteneur principal de la page */
+.container-admin {
+    max-width: 1200px;
+    margin: 100px auto 40px auto; /* Marge en haut pour ne pas être caché sous la navbar fixe */
+    width: 100%;
+    background: transparent;
+    padding: 0 20px;
+    display: block; /* Annule le display flex du body si nécessaire */
+}
+
+.container-admin h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Grille des statistiques rapides */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card-stat {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid #007bff;
+    flex: 1;
+    min-width: 200px;
+}
+
+.card-stat.bg-total {
+    border-left-color: #28a745;
+}
+
+.card-stat p {
+    font-size: 13px;
+    color: #777777;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.card-stat h3 {
+    font-size: 22px;
+    color: #333333;
+    font-weight: 700;
+}
+
+/* Formulaire de filtrage et recherche */
+.form-recherche {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-recherche input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-recherche button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-recherche button:hover {
+    background-color: #0056b3;
+}
+
+.form-recherche .btn-reset {
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Tableau responsif des étudiants */
+.table-responsive {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.table-etudiants {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table-etudiants th {
+    background-color: #f8f9fa;
+    color: #444444;
+    font-weight: 600;
+    padding: 12px 15px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.table-etudiants td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eeeeee;
+    color: #555555;
+    vertical-align: middle;
+}
+
+.table-etudiants tr:hover td {
+    background-color: #fafdff;
+}
+
+/* Badges et boutons d'action */
+.badge-filiere {
+    background-color: #e1ecf4;
+    color: #39739d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.link-delete {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.link-delete:hover {
+    text-decoration: underline;
+    color: #bd2130;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #777777;
+    font-style: italic;
+}

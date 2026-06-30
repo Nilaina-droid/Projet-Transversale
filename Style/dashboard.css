@@ -1,0 +1,186 @@
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            background-color: #efefef;
+            min-height: 100vh;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 35px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #0081c9;
+        }
+
+        .nav-brand span.icon {
+            font-size: 22px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-user {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .nav-user span {
+            color: #0081c9;
+        }
+
+        .btn-logout {
+            text-decoration: none;
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-logout:hover { background-color: #bd2130; }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        /* ── WELCOME CARD ── */
+        .welcome-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            margin-bottom: 28px;
+            border-left: 5px solid #0081c9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-card .welcome-text h2 {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .welcome-card .welcome-text p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .welcome-card .welcome-text p strong {
+            color: #0081c9;
+        }
+
+        .welcome-badge {
+            background-color: #e8f4fd;
+            color: #0081c9;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        /* ── GRID CARDS ── */
+        .menu-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            border-top: 3px solid #0081c9;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,129,201,0.15);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 22px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            background-color: #e8f4fd;
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-body h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .card-body p {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        /* carte déconnexion en rouge discret */
+        .card.danger { border-top-color: #dc3545; }
+        .card.danger .card-icon { background-color: #fdecea; }
+        .card.danger .card-body h3 { color: #dc3545; }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #bbb;
+            padding-bottom: 30px;
+        }
+    

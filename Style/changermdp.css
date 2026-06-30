@@ -1,0 +1,190 @@
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: #efefef; min-height: 100vh; }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 35px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #0081c9;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-user {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+        .nav-user span { color: #0081c9; }
+
+        .btn-logout {
+            text-decoration: none;
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-logout:hover { background-color: #bd2130; }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 480px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* ── BACK LINK ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 22px;
+            color: #0081c9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.75; }
+
+        /* ── CARD ── */
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #0081c9, #005b94);
+            padding: 20px 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h2 {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-body { padding: 28px 26px; }
+
+        /* ── ALERTS ── */
+        .alert-success {
+            background: #e8f4fd;
+            color: #005b94;
+            border-left: 4px solid #0081c9;
+            padding: 13px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .alert-danger {
+            background: #fdecea;
+            color: #c0392b;
+            border-left: 4px solid #dc3545;
+            padding: 13px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* ── FORM ── */
+        .form-group { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #fdfdfd;
+            color: #333;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #0081c9;
+            box-shadow: 0 0 0 3px rgba(0,129,201,0.12);
+            background-color: #fff;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 6px 0 20px;
+        }
+
+        /* ── BUTTON ── */
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: #0081c9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 4px;
+        }
+        .btn-submit:hover { background-color: #005b94; }
+        .btn-submit:active { transform: scale(0.99); }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #bbb;
+            padding-bottom: 30px;
+        }

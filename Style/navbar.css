@@ -1,0 +1,256 @@
+/* ══════════════════════════════════════════════
+   RU ESMIA — Feuille de style globale (étudiant)
+   ══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap');
+
+/* ── Variables ───────────────────────────────── */
+:root {
+    --green-deep:   #1a4731;
+    --green-mid:    #2d6a4f;
+    --green-light:  #52b788;
+    --green-pale:   #d8f3dc;
+    --cream:        #f8f5f0;
+    --sand:         #e9e4da;
+    --white:        #ffffff;
+    --text-dark:    #1c2b23;
+    --text-mid:     #4a6358;
+    --text-light:   #8fa89e;
+    --red:          #c0392b;
+    --shadow-sm:    0 2px 8px rgba(26,71,49,.10);
+    --shadow-md:    0 6px 24px rgba(26,71,49,.13);
+    --radius:       12px;
+    --navbar-h:     64px;
+}
+
+/* ── Reset & base ────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ══════════════════════════════════════════════
+   NAVBAR
+   ══════════════════════════════════════════════ */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--navbar-h);
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    gap: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+
+/* Brand */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-shrink: 0;
+}
+
+.brand-emoji {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.nav-brand span:last-child {
+    font-family: 'Sora', sans-serif;
+    font-size: .92rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+}
+
+/* Nav links — CORRECTION: nav-links (pas na-links) */
+.nav-links {               /* ← classe corrigée */
+    display: flex;
+    list-style: none;
+    gap: .25rem;
+    flex: 1;
+}
+
+.nav-links li a {
+    display: block;
+    padding: .45rem .9rem;
+    border-radius: 8px;
+    font-size: .875rem;
+    font-weight: 500;
+    color: rgba(255,255,255,.75);
+    transition: background .18s, color .18s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+}
+
+/* User zone */
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.user-name {
+    font-size: .88rem;
+    color: rgba(255,255,255,.85);
+    font-weight: 500;
+}
+
+.btn-logout {
+    padding: .42rem .95rem;
+    border: 1.5px solid rgba(255,255,255,.35);
+    border-radius: 8px;
+    font-size: .82rem;
+    font-weight: 600;
+    color: #fff;
+    transition: background .18s, border-color .18s;
+}
+
+.btn-logout:hover {
+    background: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.6);
+}
+
+/* ══════════════════════════════════════════════
+   LAYOUT PRINCIPAL
+   ══════════════════════════════════════════════ */
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+}
+
+/* ── Hero salutation ─────────────────────────── */
+.dashboard-hero {
+    margin-bottom: 2.5rem;
+}
+
+.dashboard-hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: .35rem;
+}
+
+.dashboard-hero p {
+    font-size: .95rem;
+    color: var(--text-mid);
+}
+
+/* ── Grille de cartes ────────────────────────── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+/* ── Carte ───────────────────────────────────── */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid var(--sand);
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    transition: box-shadow .2s, transform .2s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.card h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.card p {
+    font-size: .875rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--green-mid);
+    margin-top: .25rem;
+    transition: gap .15s, color .15s;
+}
+
+.card-link::after { content: '→'; }
+
+.card-link:hover {
+    color: var(--green-deep);
+    gap: .55rem;
+}
+
+/* ── Badges / statuts ────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: .25rem .7rem;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.badge-green  { background: var(--green-pale); color: var(--green-deep); }
+.badge-orange { background: #fff3e0;           color: #e65100;           }
+.badge-red    { background: #fdecea;           color: var(--red);        }
+
+/* ── Footer ──────────────────────────────────── */
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: .78rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--sand);
+    margin-top: 3rem;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 700px) {
+    .nav-brand span:last-child { display: none; }
+    .navbar { padding: 0 1rem; gap: 1rem; }
+    .nav-links li a { font-size: .8rem; padding: .4rem .65rem; }
+    .main-content { padding: 1.5rem 1rem; }
+    .dashboard-hero h1 { font-size: 1.45rem; }
+}
