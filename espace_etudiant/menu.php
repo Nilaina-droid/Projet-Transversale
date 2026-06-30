@@ -6,22 +6,35 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'etudiant') {
 }
 require_once '../config/connexion.php';
 
-$menus    = $pdo->query("SELECT * FROM menu WHERE statut = 'PUBLIE' ORDER BY semaine_du DESC")->fetchAll();
-$plats_bdd = $pdo->query("SELECT * FROM plat ORDER BY type_plat ASC")->fetchAll();
+$repas = ($_GET['repas'] ?? 'dejeuner') === 'diner' ? 'diner' : 'dejeuner';
+$type_service = $repas === 'diner' ? 'DINER' : 'DEJEUNER';
+
+$menus = $pdo->query("SELECT * FROM menu WHERE statut = 'PUBLIE' ORDER BY semaine_du DESC")->fetchAll();
+
+// On récupère uniquement les plats reliés (via la table quota) au service correspondant (DEJEUNER ou DINER)
+$stmt = $pdo->prepare("
+    SELECT DISTINCT p.*
+    FROM plat p
+    JOIN quota q ON q.id_plat = p.id_plat
+    JOIN service s ON s.id_service = q.id_service
+    WHERE s.Type_service = :type_service
+    ORDER BY p.type_plat ASC
+");
+$stmt->execute(['type_service' => $type_service]);
+$plats_bdd = $stmt->fetchAll();
 
 $type_icons = [
-    'Viande'   => '<i class="fas fa-drumstick-bite"></i>',
-    'Poisson'  => '<i class="fas fa-fish"></i>',
-    'Légumes'  => '<i class="fas fa-seedling"></i>',
-    'Dessert'  => '<i class="fas fa-ice-cream"></i>',
-    'Boisson'  => '<i class="fas fa-glass-martini-alt"></i>',
-    'Entrée'   => '<i class="fas fa-utensils"></i>',
-    'Féculent' => '<i class="fas fa-bowl-rice"></i>',
+    'Viande'     => '<i class="fas fa-drumstick-bite"></i>',
+    'Poisson'    => '<i class="fas fa-fish"></i>',
+    'Végétarien' => '<i class="fas fa-seedling"></i>',
+    'Légumes'    => '<i class="fas fa-seedling"></i>',
+    'Dessert'    => '<i class="fas fa-ice-cream"></i>',
+    'Boisson'    => '<i class="fas fa-glass-martini-alt"></i>',
+    'Entrée'     => '<i class="fas fa-utensils"></i>',
+    'Féculent'   => '<i class="fas fa-bowl-rice"></i>',
 ];
 
-$repas = ($_GET['repas'] ?? 'dejeuner') === 'diner' ? 'diner' : 'dejeuner';
-
-// Données fictives — à remplacer quand la table menu_plat sera créée
+// Données fictives de secours — utilisées uniquement si aucun plat n'est encore relié à ce service via la table quota
 $plats_fictifs = [
     'dejeuner' => [
         ['emoji'=>'<i class="fas fa-utensils"></i>','type'=>'Plat principal', 'nom'=>'Riz au poulet rôti',       'desc'=>'Riz parfumé servi avec du poulet rôti aux herbes et sauce tomate maison.', 'calories'=>'650', 'allergens'=>''],
@@ -43,7 +56,7 @@ $plats_fictifs = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu du jour — RU ESMIA</title>
     <link rel="stylesheet" href="../Style/menu.css">
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/fontawasome/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -86,12 +99,12 @@ $plats_fictifs = [
     </div>
 
     <?php
-    // Si des plats existent en BDD, on les utilise ; sinon données fictives
+    // Si des plats sont reliés en BDD à ce service précis, on les utilise ; sinon données fictives
     $afficher_bdd = !empty($plats_bdd);
     ?>
 
     <?php if ($afficher_bdd): ?>
-        
+
         <?php if (!empty($menus)): ?>
             <?php foreach ($menus as $menu): ?>
                 <p class="section-title">
@@ -106,7 +119,7 @@ $plats_fictifs = [
 
         <div class="semaine-card">
             <div class="semaine-header">
-                <h3><i class="fas fa-list-alt"></i> Plats disponibles</h3>
+                <h3><i class="fas fa-list-alt"></i> Plats disponibles — <?= $repas === 'dejeuner' ? 'Déjeuner' : 'Dîner' ?></h3>
                 <div style="display:flex;align-items:center;gap:10px;">
                     <?php if (!empty($menus)): ?>
                         <span style="font-size:12px;color:#888;">Publié le <?= date('d/m/Y', strtotime($menus[0]['date_publication'])) ?></span>
@@ -114,7 +127,7 @@ $plats_fictifs = [
                     <span class="badge-publie"><i class="fas fa-check-circle"></i> Disponible</span>
                 </div>
             </div>
-            
+
             <div class="plats-grid">
                 <?php foreach ($plats_bdd as $plat): ?>
                     <?php $icon = $type_icons[$plat['type_plat']] ?? '<i class="fas fa-utensils"></i>'; ?>
@@ -138,7 +151,7 @@ $plats_fictifs = [
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
             <div class="btn-reserver-wrap">
                 <a href="nouvelle_reservation.php" class="btn-reserver-main"><i class="fas fa-calendar-plus"></i> Réservez ce repas</a>
             </div>
