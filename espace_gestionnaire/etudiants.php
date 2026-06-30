@@ -333,7 +333,6 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
         </div>
 
     </div>
-    <footer>© <?= date('Y') ?> Restaurant Universitaire ESMIA — Tous droits réservés</footer>
 </div>
 
 <script>

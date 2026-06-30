@@ -109,8 +109,5 @@ $menus = $pdo->query("SELECT * FROM menu WHERE statut = 'PUBLIE' ORDER BY semain
     <?php endif; ?>
 
 </div>
-
-<div class="footer">© <?php echo date('Y'); ?> Restaurant Universitaire ESMIA — Tous droits réservés</div>
-
 </body>
 </html>

@@ -387,8 +387,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['etape2'])) {
 
     </div>
 </div>
-
-<div class="footer">© <?= date('Y') ?> Restaurant Universitaire ESMIA — Tous droits réservés</div>
-
 </body>
 </html>

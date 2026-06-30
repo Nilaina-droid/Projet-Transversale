@@ -336,7 +336,6 @@ $services = $pdo->query("SELECT * FROM service")->fetchAll();
         </div>
 
     </div>
-    <footer>© <?= date('Y') ?> Restaurant Universitaire ESMIA — Tous droits réservés</footer>
 </div>
 
 <script>

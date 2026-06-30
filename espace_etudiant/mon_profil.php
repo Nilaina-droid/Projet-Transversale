@@ -157,8 +157,5 @@ $initiales = strtoupper(substr($etudiant['prenom'], 0, 1) . substr($etudiant['no
     </div>
 
 </div>
-
-<div class="footer">© <?= date('Y') ?> Restaurant Universitaire ESMIA — Tous droits réservés</div>
-
 </body>
 </html>
