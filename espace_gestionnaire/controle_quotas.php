@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         $stmt = $pdo->prepare("INSERT INTO quota (quantite_max, quantite_restante, jour, id_plat, id_service, id_menu) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$quantite_max, $quantite_restante, $jour, $id_plat, $id_service, $id_menu]);
-        $message = "<div class='alert-success'>✅ Quota ajouté avec succès !</div>";
+        $message = "<div class='alert-success'><i class='fas fa-check'></i> Quota ajouté avec succès !</div>";
     }
 
     if ($_POST['action'] === 'supprimer') {
         $id = $_POST['id_quota'];
         $pdo->prepare("DELETE FROM quota WHERE id_quota = ?")->execute([$id]);
-        $message = "<div class='alert-danger'>🗑️ Quota supprimé.</div>";
+        $message = "<div class='alert-danger'><i class='fas fa-trash'></i> Quota supprimé.</div>";
     }
 }
 
@@ -63,7 +63,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
 </head>
 <body>
 
-<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fas fa-bars"></i></button>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
@@ -73,13 +73,13 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
     </div>
     <nav class="sidebar-nav">
         <div class="nav-section-title">Principal</div>
-        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon">📊</span> Tableau de bord</a>
-        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon">🍽️</span> Gestion des menus</a>
-        <a href="reservations.php"    class="sidebar-link"><span class="icon">📅</span> Réservations</a>
+        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon"><i class="fas fa-chart-bar"></i></span> Tableau de bord</a>
+        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon"><i class="fas fa-utensils"></i></span> Gestion des menus</a>
+        <a href="reservations.php"    class="sidebar-link"><span class="icon"><i class="fas fa-calendar-alt"></i></span> Réservations</a>
         <div class="nav-section-title">Gestion</div>
-        <a href="etudiants.php"       class="sidebar-link"><span class="icon">🎓</span> Étudiants</a>
-        <a href="gestion_plats.php"   class="sidebar-link"><span class="icon">🥘</span> Plats</a>
-        <a href="controle_quotas.php" class="sidebar-link active"><span class="icon">📈</span> Quotas</a>
+        <a href="etudiants.php"       class="sidebar-link"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Étudiants</a>
+        <a href="gestion_plats.php"   class="sidebar-link"><span class="icon"><i class="fas fa-bowl-food"></i></span> Plats</a>
+        <a href="controle_quotas.php" class="sidebar-link active"><span class="icon"><i class="fas fa-chart-line"></i></span> Quotas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="sidebar-user">
@@ -89,15 +89,15 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                 <div class="role">Gestionnaire</div>
             </div>
         </div>
-        <a href="../logout.php" class="btn-logout-side">🚪 Déconnexion</a>
+        <a href="../logout.php" class="btn-logout-side"><i class="fas fa-right-from-bracket"></i> Déconnexion</a>
     </div>
 </aside>
 
 <!-- MAIN -->
 <div class="main-wrap">
     <div class="topbar">
-        <h2>📈 Contrôle des Quotas</h2>
-        <span class="topbar-date">📅 <?= date('d/m/Y') ?></span>
+        <h2><i class="fas fa-chart-line"></i> Contrôle des Quotas</h2>
+        <span class="topbar-date"><i class="fas fa-calendar-alt"></i> <?= date('d/m/Y') ?></span>
     </div>
 
     <div class="content">
@@ -121,7 +121,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
         <!-- STATS -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-icon" style="background:#e8f4fd;">📋</div>
+                <div class="stat-icon" style="background:#e8f4fd;"><i class="fas fa-clipboard-list"></i></div>
                 <div>
                     <div class="stat-label">Quotas définis</div>
                     <div class="stat-value" style="color:#0081c9;"><?= count($quotas) ?></div>
@@ -129,7 +129,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#e8f8f0;">✅</div>
+                <div class="stat-icon" style="background:#e8f8f0;"><i class="fas fa-check"></i></div>
                 <div>
                     <div class="stat-label">Places totales</div>
                     <div class="stat-value" style="color:#1a6b40;"><?= $total_places ?></div>
@@ -137,7 +137,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#fff3e0;">🎓</div>
+                <div class="stat-icon" style="background:#fff3e0;"><i class="fas fa-graduation-cap"></i></div>
                 <div>
                     <div class="stat-label">Places prises</div>
                     <div class="stat-value" style="color:#e65100;"><?= $places_prises ?></div>
@@ -145,7 +145,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#fdecea;">🆓</div>
+                <div class="stat-icon" style="background:#fdecea;"><i class="fas fa-circle-check"></i></div>
                 <div>
                     <div class="stat-label">Places restantes</div>
                     <div class="stat-value" style="color:#c0392b;"><?= $places_restantes ?></div>
@@ -155,10 +155,10 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
         </div>
 
         <!-- FORMULAIRE -->
-        <p class="section-title">➕ Définir un nouveau quota</p>
+        <p class="section-title"><i class="fas fa-plus"></i> Définir un nouveau quota</p>
         <div class="card-form">
             <div class="card-form-header">
-                <span style="font-size:18px;">📈</span>
+                <span style="font-size:18px;"><i class="fas fa-chart-line"></i></span>
                 <h5>Nouveau quota</h5>
             </div>
             <div class="card-form-body">
@@ -207,7 +207,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                         </div>
 
                         <div class="form-group full">
-                            <button type="submit" class="btn-submit">✅ Ajouter le quota</button>
+                            <button type="submit" class="btn-submit"><i class="fas fa-check"></i> Ajouter le quota</button>
                         </div>
                     </div>
                 </form>
@@ -215,7 +215,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
         </div>
 
         <!-- TABLEAU -->
-        <p class="section-title">📋 Liste des quotas</p>
+        <p class="section-title"><i class="fas fa-clipboard-list"></i> Liste des quotas</p>
         <div class="table-card">
             <div class="table-header">
                 <h5>Quotas définis</h5>
@@ -267,7 +267,7 @@ $taux_global     = $total_places > 0 ? round($places_prises / $total_places * 10
                                 <form method="POST" onsubmit="return confirm('Supprimer ce quota ?')">
                                     <input type="hidden" name="action" value="supprimer">
                                     <input type="hidden" name="id_quota" value="<?= $q['id_quota'] ?>">
-                                    <button type="submit" class="btn-suppr">🗑️ Supprimer</button>
+                                    <button type="submit" class="btn-suppr"><i class="fas fa-trash"></i> Supprimer</button>
                                 </form>
                             </td>
                         </tr>

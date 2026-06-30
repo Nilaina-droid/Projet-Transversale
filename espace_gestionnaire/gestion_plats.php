@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         $stmt = $pdo->prepare("INSERT INTO plat (nom_plat, descriptions, type_plat, calories, allergens) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$nom_plat, $descriptions, $type_plat, $calories, $allergens]);
-        $message = "<div class='alert-success'>✅ Plat ajouté avec succès !</div>";
+        $message = "<div class='alert-success'><i class='fas fa-check'></i> Plat ajouté avec succès !</div>";
     }
 
     if ($_POST['action'] === 'supprimer') {
         $id = $_POST['id_plat'];
         $pdo->prepare("DELETE FROM plat WHERE id_plat = ?")->execute([$id]);
-        $message = "<div class='alert-danger'>🗑️ Plat supprimé.</div>";
+        $message = "<div class='alert-danger'><i class='fas fa-trash'></i> Plat supprimé.</div>";
     }
 }
 
@@ -38,13 +38,13 @@ foreach ($plats as $p) {
 }
 
 $type_config = [
-    'Viande'     => ['icon' => '🥩', 'bg' => '#fdecea', 'color' => '#c0392b'],
-    'Poisson'    => ['icon' => '🐟', 'bg' => '#e8f4fd', 'color' => '#005b94'],
-    'Légumes'    => ['icon' => '🥦', 'bg' => '#e8f8f0', 'color' => '#1a6b40'],
-    'Végétarien' => ['icon' => '🥦', 'bg' => '#e8f8f0', 'color' => '#1a6b40'],
-    'Dessert'    => ['icon' => '🍮', 'bg' => '#fff3e0', 'color' => '#e65100'],
-    'Boisson'    => ['icon' => '🥤', 'bg' => '#f3e8ff', 'color' => '#7b2d8b'],
-    'Entrée'     => ['icon' => '🥗', 'bg' => '#e8f4fd', 'color' => '#0081c9'],
+    'Viande'     => ['icon' => '<i class="fas fa-drumstick-bite"></i>', 'bg' => '#fdecea', 'color' => '#c0392b'],
+    'Poisson'    => ['icon' => '<i class="fas fa-fish"></i>', 'bg' => '#e8f4fd', 'color' => '#005b94'],
+    'Légumes'    => ['icon' => '<i class="fas fa-carrot"></i>', 'bg' => '#e8f8f0', 'color' => '#1a6b40'],
+    'Végétarien' => ['icon' => '<i class="fas fa-carrot"></i>', 'bg' => '#e8f8f0', 'color' => '#1a6b40'],
+    'Dessert'    => ['icon' => '<i class="fas fa-ice-cream"></i>', 'bg' => '#fff3e0', 'color' => '#e65100'],
+    'Boisson'    => ['icon' => '<i class="fas fa-cup-soda"></i>', 'bg' => '#f3e8ff', 'color' => '#7b2d8b'],
+    'Entrée'     => ['icon' => '<i class="fas fa-bowl-rice"></i>', 'bg' => '#e8f4fd', 'color' => '#0081c9'],
 ];
 ?>
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ $type_config = [
 </head>
 <body>
 
-<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fas fa-bars"></i></button>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
@@ -70,13 +70,13 @@ $type_config = [
     </div>
     <nav class="sidebar-nav">
         <div class="nav-section-title">Principal</div>
-        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon">📊</span> Tableau de bord</a>
-        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon">🍽️</span> Gestion des menus</a>
-        <a href="reservations.php"    class="sidebar-link"><span class="icon">📅</span> Réservations</a>
+        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon"><i class="fas fa-chart-bar"></i></span> Tableau de bord</a>
+        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon"><i class="fas fa-utensils"></i></span> Gestion des menus</a>
+        <a href="reservations.php"    class="sidebar-link"><span class="icon"><i class="fas fa-calendar-alt"></i></span> Réservations</a>
         <div class="nav-section-title">Gestion</div>
-        <a href="etudiants.php"       class="sidebar-link"><span class="icon">🎓</span> Étudiants</a>
-        <a href="gestion_plats.php"   class="sidebar-link active"><span class="icon">🥘</span> Plats</a>
-        <a href="controle_quotas.php" class="sidebar-link"><span class="icon">📈</span> Quotas</a>
+        <a href="etudiants.php"       class="sidebar-link"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Étudiants</a>
+        <a href="gestion_plats.php"   class="sidebar-link active"><span class="icon"><i class="fas fa-bowl-food"></i></span> Plats</a>
+        <a href="controle_quotas.php" class="sidebar-link"><span class="icon"><i class="fas fa-chart-line"></i></span> Quotas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="sidebar-user">
@@ -86,14 +86,14 @@ $type_config = [
                 <div class="role">Gestionnaire</div>
             </div>
         </div>
-        <a href="../logout.php" class="btn-logout-side">🚪 Déconnexion</a>
+        <a href="../logout.php" class="btn-logout-side"><i class="fas fa-right-from-bracket"></i> Déconnexion</a>
     </div>
 </aside>
 
 <!-- MAIN -->
 <div class="main-wrap">
     <div class="topbar">
-        <h2>🥘 Gestion des Plats</h2>
+        <h2><i class="fas fa-bowl-food"></i> Gestion des Plats</h2>
         <span class="topbar-count"><?= count($plats) ?> plat(s) enregistré(s)</span>
     </div>
 
@@ -104,14 +104,14 @@ $type_config = [
         <!-- STATS PAR TYPE -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-icon" style="background:#e8f4fd;">🍽️</div>
+                <div class="stat-icon" style="background:#e8f4fd;"><i class="fas fa-utensils"></i></div>
                 <div>
                     <div class="stat-label">Total plats</div>
                     <div class="stat-value" style="color:#0081c9;"><?= count($plats) ?></div>
                 </div>
             </div>
             <?php foreach (array_slice($par_type, 0, 3, true) as $type => $nb):
-                $cfg = $type_config[$type] ?? ['icon'=>'🍽️','bg'=>'#f0f0f0','color'=>'#333'];
+                $cfg = $type_config[$type] ?? ['icon'=>'<i class="fas fa-utensils"></i>','bg'=>'#f0f0f0','color'=>'#333'];
             ?>
             <div class="stat-card">
                 <div class="stat-icon" style="background:<?= $cfg['bg'] ?>;"><?= $cfg['icon'] ?></div>
@@ -127,10 +127,10 @@ $type_config = [
 
             <!-- FORMULAIRE -->
             <div>
-                <p class="section-title">➕ Ajouter un plat</p>
+                <p class="section-title"><i class="fas fa-plus"></i> Ajouter un plat</p>
                 <div class="card-form">
                     <div class="card-form-header">
-                        <span style="font-size:18px;">🥘</span>
+                        <span style="font-size:18px;"><i class="fas fa-bowl-food"></i></span>
                         <h5>Nouveau plat</h5>
                     </div>
                     <div class="card-form-body">
@@ -146,14 +146,14 @@ $type_config = [
                                 <div class="form-group">
                                     <label>Type</label>
                                     <select name="type_plat" required>
-                                        <option value="Viande">🥩 Viande</option>
-                                        <option value="Poisson">🐟 Poisson</option>
-                                        <option value="Légumes">🥦 Légumes</option>
-                                        <option value="Végétarien">🌿 Végétarien</option>
-                                        <option value="Entrée">🥗 Entrée</option>
-                                        <option value="Féculent">🍚 Féculent</option>
-                                        <option value="Dessert">🍮 Dessert</option>
-                                        <option value="Boisson">🥤 Boisson</option>
+                                        <option value="Viande"><i class="fas fa-drumstick-bite"></i> Viande</option>
+                                        <option value="Poisson"><i class="fas fa-fish"></i> Poisson</option>
+                                        <option value="Légumes"><i class="fas fa-carrot"></i> Légumes</option>
+                                        <option value="Végétarien"><i class="fas fa-leaf"></i> Végétarien</option>
+                                        <option value="Entrée"><i class="fas fa-bowl-rice"></i> Entrée</option>
+                                        <option value="Féculent"><i class="fas fa-wheat-awn"></i> Féculent</option>
+                                        <option value="Dessert"><i class="fas fa-ice-cream"></i> Dessert</option>
+                                        <option value="Boisson"><i class="fas fa-cup-soda"></i> Boisson</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -172,7 +172,7 @@ $type_config = [
                                 <input type="text" name="allergens" placeholder="Ex : Gluten, Arachides, Lactose">
                             </div>
 
-                            <button type="submit" class="btn-submit">✅ Ajouter le plat</button>
+                            <button type="submit" class="btn-submit"><i class="fas fa-check"></i> Ajouter le plat</button>
                         </form>
                     </div>
                 </div>
@@ -180,7 +180,7 @@ $type_config = [
 
             <!-- TABLEAU -->
             <div>
-                <p class="section-title">📋 Liste des plats</p>
+                <p class="section-title"><i class="fas fa-clipboard-list"></i> Liste des plats</p>
                 <div class="table-card">
                     <div class="table-header">
                         <h5>Plats disponibles</h5>
@@ -200,7 +200,7 @@ $type_config = [
                                 <tr class="empty-row"><td colspan="4">Aucun plat enregistré pour le moment</td></tr>
                             <?php else: ?>
                                 <?php foreach ($plats as $p):
-                                    $cfg  = $type_config[$p['type_plat']] ?? ['icon'=>'🍽️','bg'=>'#f0f0f0','color'=>'#333'];
+                                    $cfg  = $type_config[$p['type_plat']] ?? ['icon'=>'<i class="fas fa-utensils"></i>','bg'=>'#f0f0f0','color'=>'#333'];
                                 ?>
                                 <tr>
                                     <td>
@@ -222,10 +222,10 @@ $type_config = [
                                     <td>
                                         <div style="display:flex;gap:5px;flex-wrap:wrap;">
                                             <?php if (!empty($p['calories'])): ?>
-                                                <span class="tag tag-cal">🔥 <?= $p['calories'] ?> kcal</span>
+                                                <span class="tag tag-cal"><i class="fas fa-fire"></i> <?= $p['calories'] ?> kcal</span>
                                             <?php endif; ?>
                                             <?php if (!empty($p['allergens'])): ?>
-                                                <span class="tag tag-alrg">⚠️ <?= htmlspecialchars($p['allergens']) ?></span>
+                                                <span class="tag tag-alrg"><i class="fas fa-triangle-exclamation"></i> <?= htmlspecialchars($p['allergens']) ?></span>
                                             <?php endif; ?>
                                             <?php if (empty($p['calories']) && empty($p['allergens'])): ?>
                                                 <span style="color:#ccc;font-size:12px;">—</span>
@@ -236,7 +236,7 @@ $type_config = [
                                         <form method="POST" onsubmit="return confirm('Supprimer ce plat ?')">
                                             <input type="hidden" name="action" value="supprimer">
                                             <input type="hidden" name="id_plat" value="<?= $p['id_plat'] ?>">
-                                            <button type="submit" class="btn-suppr">🗑️ Supprimer</button>
+                                            <button type="submit" class="btn-suppr"><i class="fas fa-trash"></i> Supprimer</button>
                                         </form>
                                     </td>
                                 </tr>

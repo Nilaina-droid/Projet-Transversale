@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $id = $_POST['id_etudiant'];
         $pdo->prepare("DELETE FROM reservation WHERE id_etudiant = ?")->execute([$id]);
         $pdo->prepare("DELETE FROM etudiant WHERE id_etudiant = ?")->execute([$id]);
-        $message = "<div class='alert-danger'>🗑️ Étudiant supprimé.</div>";
+        $message = "<div class='alert-danger'><i class='fas fa-trash'></i> Étudiant supprimé.</div>";
     }
 }
 
@@ -161,7 +161,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
 </head>
 <body>
 
-<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fas fa-bars"></i></button>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
@@ -171,13 +171,13 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
     </div>
     <nav class="sidebar-nav">
         <div class="nav-section-title">Principal</div>
-        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon">📊</span> Tableau de bord</a>
-        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon">🍽️</span> Gestion des menus</a>
-        <a href="reservations.php"    class="sidebar-link"><span class="icon">📅</span> Réservations</a>
+        <a href="dashboard_admin.php" class="sidebar-link"><span class="icon"><i class="fas fa-chart-bar"></i></span> Tableau de bord</a>
+        <a href="gestion_menus.php"   class="sidebar-link"><span class="icon"><i class="fas fa-utensils"></i></span> Gestion des menus</a>
+        <a href="reservations.php"    class="sidebar-link"><span class="icon"><i class="fas fa-calendar-alt"></i></span> Réservations</a>
         <div class="nav-section-title">Gestion</div>
-        <a href="etudiants.php"       class="sidebar-link active"><span class="icon">🎓</span> Étudiants</a>
-        <a href="gestion_plats.php"   class="sidebar-link"><span class="icon">🥘</span> Plats</a>
-        <a href="controle_quotas.php" class="sidebar-link"><span class="icon">📈</span> Quotas</a>
+        <a href="etudiants.php"       class="sidebar-link active"><span class="icon"><i class="fas fa-graduation-cap"></i></span> Étudiants</a>
+        <a href="gestion_plats.php"   class="sidebar-link"><span class="icon"><i class="fas fa-bowl-food"></i></span> Plats</a>
+        <a href="controle_quotas.php" class="sidebar-link"><span class="icon"><i class="fas fa-chart-line"></i></span> Quotas</a>
     </nav>
     <div class="sidebar-footer">
         <div class="sidebar-user">
@@ -187,14 +187,14 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                 <div class="role">Gestionnaire</div>
             </div>
         </div>
-        <a href="../logout.php" class="btn-logout-side">🚪 Déconnexion</a>
+        <a href="../logout.php" class="btn-logout-side"><i class="fas fa-right-from-bracket"></i> Déconnexion</a>
     </div>
 </aside>
 
 <!-- MAIN -->
 <div class="main-wrap">
     <div class="topbar">
-        <h2>🎓 Gestion des Étudiants</h2>
+        <h2><i class="fas fa-graduation-cap"></i> Gestion des Étudiants</h2>
         <span class="topbar-count"><?= $total ?> étudiant(s) inscrit(s)</span>
     </div>
 
@@ -205,7 +205,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
         <!-- STATS -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-icon" style="background:#e8f4fd;">🎓</div>
+                <div class="stat-icon" style="background:#e8f4fd;"><i class="fas fa-graduation-cap"></i></div>
                 <div>
                     <div class="stat-label">Total étudiants</div>
                     <div class="stat-value" style="color:#0081c9;"><?= $total ?></div>
@@ -213,7 +213,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#e8f8f0;">📅</div>
+                <div class="stat-icon" style="background:#e8f8f0;"><i class="fas fa-calendar-alt"></i></div>
                 <div>
                     <div class="stat-label">Inscrits ce mois</div>
                     <div class="stat-value" style="color:#1a6b40;"><?= $ce_mois ?></div>
@@ -221,7 +221,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon" style="background:#fff3e0;">📚</div>
+                <div class="stat-icon" style="background:#fff3e0;"><i class="fas fa-book"></i></div>
                 <div>
                     <div class="stat-label">Filières</div>
                     <div class="stat-value" style="color:#e65100;"><?= count($par_filiere) ?></div>
@@ -238,17 +238,17 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                 <!-- RECHERCHE -->
                 <form method="GET" class="search-bar">
                     <input type="text" name="search" class="search-input"
-                           placeholder="🔍 Rechercher par nom, prénom, matricule ou email..."
+                           placeholder="Rechercher par nom, prénom, matricule ou email..."
                            value="<?= htmlspecialchars($search) ?>">
                     <button type="submit" class="btn-search">Rechercher</button>
                     <?php if ($search): ?>
-                        <a href="etudiants.php" class="btn-reset">✕ Reset</a>
+                        <a href="etudiants.php" class="btn-reset"><i class="fas fa-xmark"></i> Reset</a>
                     <?php endif; ?>
                 </form>
 
                 <div class="table-card">
                     <div class="table-header">
-                        <h5>📋 Étudiants <?= $search ? '— résultats pour "'.htmlspecialchars($search).'"' : '' ?></h5>
+                        <h5><i class="fas fa-clipboard-list"></i> Étudiants <?= $search ? '— résultats pour "'.htmlspecialchars($search).'"' : '' ?></h5>
                         <span class="table-count"><?= count($etudiants) ?> résultat(s)</span>
                     </div>
                     <table>
@@ -289,7 +289,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                                         <form method="POST" onsubmit="return confirm('Supprimer cet étudiant et toutes ses réservations ?')">
                                             <input type="hidden" name="action" value="supprimer">
                                             <input type="hidden" name="id_etudiant" value="<?= $e['id_etudiant'] ?>">
-                                            <button type="submit" class="btn-suppr">🗑️ Supprimer</button>
+                                            <button type="submit" class="btn-suppr"><i class="fas fa-trash"></i> Supprimer</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -305,7 +305,7 @@ $ce_mois     = $pdo->query("SELECT COUNT(*) FROM etudiant WHERE MONTH(date_inscr
                 <p class="section-title">Répartition par filière</p>
                 <div class="filiere-card">
                     <div class="filiere-header">
-                        <h5>📚 Filières</h5>
+                        <h5><i class="fas fa-book"></i> Filières</h5>
                     </div>
                     <div class="filiere-list">
                         <?php if (empty($par_filiere)): ?>
