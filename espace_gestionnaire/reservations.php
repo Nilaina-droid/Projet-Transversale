@@ -43,7 +43,7 @@ $all = $pdo->query("SELECT statut, COUNT(*) as nb FROM reservation GROUP BY stat
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../Style/resevation.css">
+    <link rel="stylesheet" href="../Style/reservations.css">
     
 </head>
 <body>
